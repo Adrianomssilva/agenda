@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cell: MyString
+  e_mail: MyString
+  day_anniversary: 1
+  month_anniversary: MyString
+  year_anniversary: 1
+
+two:
+  name: MyString
+  cell: MyString
+  e_mail: MyString
+  day_anniversary: 1
+  month_anniversary: MyString
+  year_anniversary: 1

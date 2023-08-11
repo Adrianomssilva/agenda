@@ -1,0 +1,24 @@
+<h1>Novo Cliente</h1>
+
+<%= form_with model: @customer  do |f| %>
+<div>
+<%= f.label :name, "Nome" %> <br>
+<%= f.text_field :name %>
+</div>
+<div>
+<%= f.label :cell, "Celular" %> <br>
+<%= f.telephone_field :cell %>
+</div>
+<div>
+<%= f.label :e_mail, "E-mail" %><br>
+<%= f.email_field :e_mail %>
+</div>
+<div>
+<%= f.label :birthday, "Dia do Aniversário" %><br>
+<%= f.date_field :birthday, in: 1..31 %>
+</div>
+
+<%= f.submit %>
+
+<% end %>
+
