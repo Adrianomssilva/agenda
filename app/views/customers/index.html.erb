@@ -2,6 +2,6 @@
 
 <% @customers.each do |customer| %>
 <li>
- <%= customer.name%>
+ <%= link_to customer.name, customer%>
 </li>
-<% end %>
+<% end %> 
