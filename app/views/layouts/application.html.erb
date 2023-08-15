@@ -9,6 +9,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+   <% Time::DATE_FORMATS[:default] = "%d/%m/%Y %H:%M"
+ Date::DATE_FORMATS[:default] = "%d/%m/%Y"%>
   </head>
 
   <body>
