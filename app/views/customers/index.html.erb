@@ -1,4 +1,7 @@
+<div class="navbar"><%= link_to  "Novo cliente", new_customer_path %></div>
+
 <h1>Clientes</h1>
+
 
 <% @customers.each do |customer| %>
 <li>
@@ -6,4 +9,3 @@
 <%= link_to  "Editar", edit_customer_path(customer) %> </li>
 <% end %> 
 
-<div><%= link_to  "Novo cliente", new_customer_path %></div>
