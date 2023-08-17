@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
    def index
-      @customers = Customer.all
+     @customers = Customer.all
 
    end
 
@@ -51,7 +51,17 @@ class CustomersController < ApplicationController
    
    end
 
-
+   def search
+      @search_term = params[:search_term].downcase
+      if @search_term.blank?
+         redirect_to root_path
+      else
+         @customers = Customer.where("lower(name) LIKE ?", "%#{@search_term}%")
+      
+      end
+      
+      
+   end
 
    private
    def customer_params

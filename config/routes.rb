@@ -6,5 +6,9 @@ Rails.application.routes.draw do
 
   root 'customers#index'
 
-  resources :customers
+  resources :customers do
+    collection do
+      get :search
+    end
+  end
 end

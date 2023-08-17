@@ -14,6 +14,11 @@
   </head>
 
   <body>
+    <%= form_with url: search_customers_path, method: :get do |form| %>
+    <%= form.label :search_term, "Buscar por:" %>
+    <%= form.text_field :search_term %>
+    <%= form.submit "Busca" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

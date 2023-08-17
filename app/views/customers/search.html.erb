@@ -1,0 +1,12 @@
+<h1>Resultado da pesquisa</h1>
+<% if @customers.present? %>
+  <ul>
+    <% @customers.each do |customer| %>
+      <li><%= link_to customer.name, customer_path(customer) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Cliente não registrado</p>
+<% end %>
+
+<%= link_to  "Início", root_path %>
