@@ -52,21 +52,20 @@ class CustomersController < ApplicationController
    end
 
    def search
-      @search_term = params[:search_term].downcase
+      @search_term = params[:search_term]
       if @search_term.blank?
          redirect_to root_path
       else
-         @customers = Customer.where("lower(name) LIKE ?", "%#{@search_term}%")
+         @customers = Customer.where("name ILIKE ?", "%#{@search_term}%")
+         # @customers = Customer.where("customers.birthday.month LIKE ?", "%#{@search_term}%")
       
       end
-      
+
       
    end
 
    private
-   def customer_params
-   
-   params.require(:customer).permit(:name, :cell, :e_mail, :birthday)
-   end
-
+      def customer_params
+         params.require(:customer).permit(:name, :cell, :e_mail, :birthday)
+      end
 end

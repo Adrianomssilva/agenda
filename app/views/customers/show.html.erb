@@ -2,6 +2,7 @@
 <div> <h2> <%=@customer.cell%></h2></div>
 <div> <h2> <%=@customer.e_mail%></h2></div>
 <div> <h2> <%=formatted_date(@customer.birthday)%></h2></div>
+<div> <h2> <%=@customer.birthday.month%></h2></div>
 
 <%= link_to  "Início", root_path %>
 <%= link_to  "Delete", customer_path, data:{turbo_method: :delete, turbo_confirm: "Você tem certeza?"} %>
