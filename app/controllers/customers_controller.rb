@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
 
+   before_action :fetch_customer, only: %i[ show edit update destroy ]
+
    def index
      @customers = Customer.all
 
@@ -24,31 +26,21 @@ class CustomersController < ApplicationController
    end
    
 
-   def show
-      @customer = Customer.find(params[:id])
-   end
+   def show; end
 
-   def edit
-      @customer = Customer.find(params[:id])
-   end
+   def edit; end
 
    def update
-      @customer = Customer.find(params[:id])
+      return redirect_to @customer if @customer.update(customer_params)
 
-      if @customer.update(customer_params)
-         redirect_to @customer
-      
-      else
       render :edit
-      end
    end
 
    def destroy
 
-      @customer = Customer.find(params[:id])
       @customer.destroy
-      redirect_to root_path
-   
+
+      redirect_to root_path   
    end
 
    def search
@@ -67,5 +59,8 @@ class CustomersController < ApplicationController
    private
       def customer_params
          params.require(:customer).permit(:name, :cell, :e_mail, :birthday)
+      end
+      def fetch_customer
+         @customer = Customer.find(params[:id])
       end
 end
