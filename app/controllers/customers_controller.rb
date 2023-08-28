@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
 
-   before_action :fetch_customer, only: %i[ show edit update destroy ]
+   before_action :fetch_customer, only: [:edit, :update, :show, :destroy]
 
    def index
      @customers = Customer.all
@@ -31,7 +31,7 @@ class CustomersController < ApplicationController
    def edit; end
 
    def update
-      return redirect_to @customer if @customer.update(customer_params)
+      return redirect_to customer_path if @customer.update(customer_params)
 
       render :edit
    end
@@ -40,7 +40,7 @@ class CustomersController < ApplicationController
 
       @customer.destroy
 
-      redirect_to root_path   
+      redirect_to customers_path
    end
 
    def search
