@@ -1,4 +1,3 @@
-<h1>Resultado da pesquisa</h1>
 <% if @customers.present? %>
   <ul>
     <% @customers.each do |customer| %>
@@ -6,6 +5,5 @@
     <% end %>
   </ul>
 <% else %>
-  <p>Cliente não registrado</p>
+  <p>No results found.</p>
 <% end %>
-

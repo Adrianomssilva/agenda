@@ -52,6 +52,10 @@ class CustomersController < ApplicationController
          # @customers = Customer.where("customers.birthday.month LIKE ?", "%#{@search_term}%")
       
       end
+   def search_month
+      @select_month = params[:month].to_i
+      @customers = Customer.where("EXTRACT(MONTH FROM birthday) = ?", @select_month)      
+      end
 
       
    end
@@ -63,4 +67,9 @@ class CustomersController < ApplicationController
       def fetch_customer
          @customer = Customer.find(params[:id])
       end
+
+      def customer_month
+         month(@customer.birthday)
+      end
+
 end

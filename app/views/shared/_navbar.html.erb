@@ -4,5 +4,12 @@
         <%= form.text_field :search_term %>
         <%= form.submit "Busca" %>
         <% end %></div> 
+
+        <div class = "filter"> <%= form_with url: search_month_customers_path, method: :get do |form| %>
+        <%= form.label :month, "Buscar por:" %>
+        <%= form.select :month, (1..12) %>
+        <%= form.submit "Filtrar" %>
+        <% end %> </div>
     <div class = "menu"><%= link_to  "Novo cliente", new_customer_path %></div>
+    <div class = "menu"><%= link_to  "Início", customers_path %></div>
     </div>

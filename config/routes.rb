@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :customers do
     collection do
       get :search
+      get :search_month
     end
   end
 end
