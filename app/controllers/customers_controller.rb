@@ -14,8 +14,11 @@ class CustomersController < ApplicationController
 
    def create
       @customer = Customer.new(customer_params)
+ 
       
       if @customer.save
+         customer_month
+    
          redirect_to customers_path
 
       
@@ -31,9 +34,12 @@ class CustomersController < ApplicationController
    def edit; end
 
    def update
-      return redirect_to customer_path if @customer.update(customer_params)
-
+      if @customer.update(customer_params)
+         customer_month_up
+         redirect_to customer_path
+      else
       render :edit
+      end
    end
 
    def destroy
@@ -52,24 +58,28 @@ class CustomersController < ApplicationController
          # @customers = Customer.where("customers.birthday.month LIKE ?", "%#{@search_term}%")
       
       end
-   def search_month
-      @select_month = params[:month].to_i
-      @customers = Customer.where("EXTRACT(MONTH FROM birthday) = ?", @select_month)      
+   end
+   
+
+      def search_month
+         @search_month = params[:search_month].to_i
+         @customers = Customer.where("month = ?", @search_month)
       end
 
-      
-   end
 
    private
       def customer_params
-         params.require(:customer).permit(:name, :cell, :e_mail, :birthday)
+         params.require(:customer).permit(:name, :cell, :e_mail, :birthday, :month)
       end
       def fetch_customer
          @customer = Customer.find(params[:id])
       end
-
       def customer_month
-         month(@customer.birthday)
+         @customer.month = @customer.birthday.month
+         @customer.save
       end
-
+      def customer_month_up
+         @customer.month = @customer.birthday.month
+         @customer.update(customer_params)
+      end
 end
