@@ -1,7 +1,9 @@
 class CustomersController<ApplicationController
 
+  before_action :fetch_customer, only: %i[edit, update, show, destroy]
+  
   def index
-    @customers = Customer.all
+    @customers = Customers.all
   end
 
   def new
@@ -11,30 +13,23 @@ class CustomersController<ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to @customer
+      redirect_to customers_path
     else
       render :new
     end
   end
 
-  def show
-    @customer = Customer.find(params[:id])
-  end
+  def show;  end
 
-  def edit
-    @customer = Customer.find(params[:id])
-  end
+  def edit;  end
 
   def update
-    @customer = Customer.find(params[:id])
-    if @customer.update(customer_params)
-      redirect_to @customer
-    else
-      render :edit
+    redirect_to customer_path if @customer.update(customer_params)
+    rende :edit
+    end
   end
 
   def destroy
-    @customer = Customer.find(params[:id])
     @customer.destroy
     redirect_to customers_path
   end
@@ -42,5 +37,9 @@ class CustomersController<ApplicationController
   private
 
   def customer_params
-    params.require(:customers).permit(:name, :email, :birthday, :month)
+    params.require(:customer).permit(:name, :email, :birthday)
+  end
+
+  def fetch_customer
+    @customer = Customer.find(params[:id])
   end
