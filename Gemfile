@@ -71,4 +71,3 @@ group :test do
   gem "webdrivers"
 end
 
-gem "ransack", "~> 4.0"
