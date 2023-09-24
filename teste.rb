@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController 
   
   def index
-    @customers = Customer.all
+    @customers = Customers.all
   end
 
   def new
@@ -17,13 +17,9 @@ class CustomersController < ApplicationController
     end
   end
 
-  def show
-    @customer = Customer.find(params[:id])
-  end
+  def show;  end
 
-  def edit
-    @customer = Customer.find(params[:id])
-  end
+  def edit;  end
 
   def update
     @customer = Customer.find(params[:id])
@@ -35,13 +31,13 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @customer = Customer.find(params[:id])
     @customer.destroy
     redirect_to customers_path
   end
 
 
   private
+
 
   def customer_params
     params.require(:customer).permit(:name, :email, :cell, :birthday)
