@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController 
   
+  before_action :fetch_customer, only: [:edit, :update, :show, :destroy]
   def index
     @customers = Customers.all
   end
