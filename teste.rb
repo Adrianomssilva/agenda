@@ -10,5 +10,8 @@ teste teste teste teste teste tese teste
 
 def new
   @customer = Customer.find(params[:id])
-  @cutomer.new
+  if @customer.new
+    redirect_to @customer_path
+  else 
+    render new 
 end
